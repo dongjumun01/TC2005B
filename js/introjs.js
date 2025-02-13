@@ -47,3 +47,10 @@ for (var i = 0; i < 10; i++) {
 }
 
 console.log(i); // sigue viva la variable i.
+// es 10 porque añade 1 al 9 y no impreme el valor de 10 por la condición
+// y luego imprime la i.
+
+//alert, prompt, confirm
+alert("srgdgerhhljn");
+const nombre = prompt("Como te llamas");
+const is_hambre = confirm("Tienes hambre?");

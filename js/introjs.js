@@ -36,3 +36,14 @@ const precio = 99.99;
 
 //Alcance de las variables
 
+for (let i = 0; i < 10; i++) {
+    console.log(i);
+}
+
+console.log(i); // sale error. Porque ya desapareció después de {}.
+
+for (var i = 0; i < 10; i++) {
+    console.log(i);
+}
+
+console.log(i); // sigue viva la variable i.

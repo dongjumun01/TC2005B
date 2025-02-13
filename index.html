@@ -4,23 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dongju Mun</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" 
+        rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>Dongju Mun</h1>
-        <h2>A01712119</h2>
-        <a href="">A photo of myself</a>
-        <h3>Contacto</h3>
+        <h1 class="nombre">Dongju Mun</h1>
+        <h2 class="matricula">A01712119</h2>
+        <img src="./me.jpg" class="foto" alt="a photo of myself">
+    </header>
+    <nav class="navbar">
+        <ul>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#introduccion">Introducción</a></li>
+            <li><a href="#preguntas">Pregutnas</a></li>
+            <li><a href="#referencias">Referencias</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h3 id="contacto">Contacto</h3>
         <ul>
             <li>Número de teléfono: +52 7291242100</li>
             <li>Correo eléctrico: A01712119@tec.mx</li>
             <li>Github: DongjuMun</li>
         </ul>
-        <h3>Introducción</h3>
+        <hr>
+        <h3 id="introduccion">Introducción</h3>
         <p> Hola, soy Dongju Mun. Estoy en el 4to semestre en ITESM campus 
         Querétaro. Estudio ITC(Ingeniería en Tecnologías Computacionales).</p>
-        
-        <h3>Preguntas</h3>
+        <hr>
+        <h3 id="preguntas">Preguntas</h3>
         <strong>¿Cuál es la diferencia entre Internet y 
             la World Wide Web?</strong>
         <p>Internet es una inmensa red de computadoras alrededor de todo 
@@ -29,8 +45,8 @@
         sobre esa red de computadoras. Así que cuando navegas a través de 
         tu celular o computadora usas internet para acceder a la web.</p>
 
-        <strong>¿Cuáles son las partes de un URL?</strong>
-        <img src="./url.png" alt="imagen de url">
+        <strong>¿Cuáles son las partes de un URL?</strong><br>
+        <img src="./url.png" alt="imagen de url" class="img-url">
         <p>Las partes de una URL son: 
             <ol>
                 <li>Protocolo (HTTP (Hypertext Transfer Protocol))</li>
@@ -665,10 +681,82 @@
             <p>Construcción del sistema: Programación y Testeo. Instalación.
                 Entrenamiento. Soporte</p>
         </ol>
+        <strong>Como ingeniero de software ¿cuál es tu recomendación sobre el 
+            uso de !important en un CSS? </strong>
+        <p>La regla importante en CSS se utiliza para agregar más importancia a 
+            una propiedad/valor de lo normal. De hecho, si uso la regla 
+            importante, anulará TODAS las reglas de estilo anteriores para esa 
+            propiedad específica en ese elemento.</p>
+        <p>El uso de !important en CSS debe ser limitado y reservado para casos 
+            excepcionales, como sobrescribir estilos de terceros o manejar 
+            situaciones críticas de producción, pero nunca como una solución 
+            habitual. Su abuso dificulta el mantenimiento del código y genera 
+            conflictos de especificidad, lo que puede complicar la colaboración 
+            en equipo. En su lugar, es preferible estructurar correctamente los 
+            estilos, usar selectores más específicos, organizar el CSS en 
+            cascada y, en proyectos modernos, optar por enfoques como CSS-in-JS, 
+            Tailwind o módulos CSS para mantener un control preciso de los 
+            estilos sin necesidad de recurrir a !important.</p>
 
-    </header>
+            <strong>Si se pone una imagen de fondo en una página HTML, ¿por qué 
+                debe escogerse con cuidado?</strong>
+            <p>Elegir con cuidado una imagen de fondo en una página HTML es 
+                crucial porque afecta tanto la estética como la funcionalidad 
+                del diseño. Una imagen mal seleccionada puede dificultar la 
+                legibilidad del texto, sobrecargar visualmente la página o 
+                ralentizar su carga si el archivo es demasiado pesado. Además, 
+                debe ser relevante al contenido y estar optimizada para 
+                diferentes tamaños de pantalla y resoluciones para garantizar 
+                una experiencia de usuario accesible y profesional. También es 
+                importante considerar aspectos como el contraste, la calidad de 
+                compresión y su impacto en el rendimiento del sitio.</p>
+
+            <strong>Como ingeniero de software, ¿cuál es tu recomendación al 
+                elegir las unidades de un propiedad de estilo entre %, px 
+                y pt?</strong>
+            <p>Al elegir unidades para propiedades de estilo en CSS, es 
+                importante considerar el contexto y la flexibilidad necesaria en 
+                el diseño. </p>
+            <ul>
+                <li>Usar % (porcentaje)</li>
+                <p>Ideal para diseños fluidos y responsivos, ya que se basan en 
+                    el tamaño relativo del contenedor padre. Úsalo para anchos, 
+                    márgenes o paddings en layouts que necesitan ajustarse 
+                    dinámicamente al tamaño de la pantalla.</p>
+                <li>Usar px (píxeles)</li>
+                <p>Útil para elementos que requieren precisión absoluta, como 
+                    bordes, íconos o imágenes. Sin embargo, evita abusar de 
+                    píxeles para fuentes o tamaños generales, ya que no escalan 
+                    bien en pantallas con resoluciones variables.</p>
+                <li>Evitar pt (puntos)</li>
+                <p>Aunque se usa en diseño impreso, no es recomendable para la 
+                    web porque no se ajusta bien en dispositivos con diferentes 
+                    resoluciones. En lugar de pt, utiliza em, rem, o incluso px 
+                    para el control del tamaño de fuente.</p>
+                <li>Recomendación general</li>
+                <p>Prefiere unidades relativas como %, em o rem para garantizar 
+                    accesibilidad, diseño responsivo y una mejor experiencia en 
+                    diferentes dispositivos. Reserva los px para elementos que 
+                    requieran dimensiones exactas y evita pt para el desarrollo 
+                    web.</p>
+            </ul>
+
+            <strong>¿Por qué el uso de una versión minimizada del CSS mejora el 
+                rendimiento del sitio?</strong>
+            <p>El uso de una versión minimizada del CSS mejora el rendimiento 
+                del sitio porque elimina caracteres innecesarios como espacios, 
+                saltos de línea y comentarios, reduciendo significativamente el 
+                tamaño del archivo. Esto acelera el tiempo de carga de la 
+                página, ya que se transfiere menos información al navegador. 
+                Además, mejora el tiempo de procesamiento del CSS por parte del 
+                navegador y optimiza el uso del ancho de banda, lo cual es 
+                especialmente beneficioso para usuarios con conexiones lentas. 
+                En resumen, la minimización del CSS hace que el sitio sea más 
+                rápido, eficiente y amigable para los usuarios.</p>
+    </main>
     <footer>
-        <strong>Referencias</strong>
+        <hr>
+        <h3 id="referencias">Referencias</h3>
         <p>Collado, V. (2025, 29 enero). ¿Qué es una dirección web o url? | 
             Adaptix Networks. Adaptix Networks | Servicios En la Nube. 
             https://www.adaptixnetworks.com/que-es-una-direccion-web-o-url/</p>

@@ -77,7 +77,7 @@ mi_funcion(); // ejecutar la function que esta guardada en esa dirección
 
 // arreglos
 
-const arreglo = ["Elemento"];
+const arreglo = ["Elemento"]; // la ubicacion donde esta guardado el arreglo.
 
 const arreglo2 = new Array();
 

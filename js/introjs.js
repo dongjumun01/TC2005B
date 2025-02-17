@@ -67,4 +67,67 @@ function imprime_status(){
 imprime_status();
 
 //funciones modernas
-() => {}
+const mi_funcion = () => {
+    console.log("sk.dkfsaj.sadkf desde una función anónima");
+}
+
+mi_funcion(); // ejecutar la function que esta guardada en esa dirección
+// las funciones son objetos. Por eso las variables pueden hacer referencia
+// a las funciones.
+
+// arreglos
+
+const arreglo = ["Elemento"];
+
+const arreglo2 = new Array();
+
+arreglo.push("Otro elemento");
+
+arreglo[10] = "Uno más";
+
+//arreglo asociativos
+arreglo["uno"] = 5; // no es un elemento. una propiedad. No aumenta la longitud.
+
+//recorrido tradicional del arreglo
+
+for(let i = 0; i < arreglo.length; i++) {
+    console.log(arreglo[i]);
+}
+
+console.log("operador in");
+
+//recorridos alternativos del arreglo
+
+for(let posicion in arreglo) { // imprime las posiciones del arreglo
+    console.log(posicion);
+}
+
+console.log("operador in");
+
+for(let posicion in arreglo) { // imprime los elementos del arreglo
+    console.log(arreglo[posicion]);
+}
+
+console.log("operador of");
+
+for(let posicion of arreglo) { // imprime los elementos del arreglo
+    console.log(posicion);
+}
+
+// Objetos
+
+const objeto = {};
+objeto.atributo1 = "hola";
+objeto.atributo2 = 12;
+objeto.atributo3 = [];
+objeto.objeto = {};
+
+console.log("Imprime las psociones del objeto")
+for (let pos in objeto) {
+    console.log(pos);
+}
+console.log("Imprime los elementos del objeto")
+for (let pos in objeto) {
+    console.log(objeto[pos]);
+}
+//no podemos usar of.

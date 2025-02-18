@@ -38,3 +38,6 @@ git checkout develop
 //la rama de develop que esta en mi compu
 git pull
 git checkout -b rodrigo/contact
+
+
+//dongju/lab7b

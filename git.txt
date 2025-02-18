@@ -15,3 +15,26 @@ git merge nombre_de_rama
 
 //Para actualizarlo en github
 git push
+
+//Si trabajo en grupo, de develop (una rama que no sea main)
+git checkout -b dongju/aboutus
+
+//igual add, commit, checkout to develop,
+git add -A 
+git commit -m ""
+git checkout develop
+//Y hay que actualizarlo. De la rama develop
+git pull
+
+// ahora git merge dongju/aboutus y hacer push
+git merge dongju/aboutus
+git push
+
+//Si quiero trabajar en mi parte
+git pull
+git checkout develop
+
+//Porque si mi compañero ya ha guardado sus cambios, necesito actualizar
+//la rama de develop que esta en mi compu
+git pull
+git checkout -b rodrigo/contact

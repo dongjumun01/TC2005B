@@ -39,6 +39,7 @@ git checkout develop
 git pull
 git checkout -b rodrigo/contact
 
+
+//dongju/lab7b
 //develop
-//adsgag\
-asgasdg
+//adsgag

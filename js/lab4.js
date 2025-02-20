@@ -82,3 +82,33 @@ function inverso(number) {
 
 let n = 1234;
 document.write("Resultado de la función inverso: " + inverso(n));
+
+
+function mergeAlternately(word1, word2) {
+    let merged = "";
+    let i = 0, j = 0;
+
+    while (i < word1.length || j < word2.length) {
+        if (i < word1.length) {
+            merged += word1[i];
+            i++;
+        }
+        if (j < word2.length) {
+            merged += word2[j];
+            j++;
+        }
+    }
+
+    return merged;
+}
+
+let merged_result = mergeAlternately("abc", "def");
+const button_result = document.getElementById("button_result");
+
+const imprime_resultado = () => {
+    const result_html = document.getElementById("resultado_merged");
+    result_html.innerHTML = `<p>El resultado de "abc" y "def": ${merged_result}
+    </p>`;
+}
+
+button_result.onclick = imprime_resultado;

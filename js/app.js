@@ -1,11 +1,15 @@
 const file_system = require('fs')
 //fs es file system
 //leer archivos aceder archivos ...
+<<<<<<< HEAD
 //The ‘fs’ module of Node.js implements the File I/O operation
+=======
+>>>>>>> develop
 
 file_system.writeFileSync('hola.txt', 'Hola desde node');
 //Manera sincronica
 //para sistemas distribuidos
+<<<<<<< HEAD
 //Cuando este occurre va a bloquedar todo hasta que corra ese comando.
 
 setTimeout(() => {
@@ -88,3 +92,6 @@ const html = `
   </body>
 </html>
 `
+=======
+//Cuando este occurre va a bloquedar todo hasta que corra ese comando.
+>>>>>>> develop

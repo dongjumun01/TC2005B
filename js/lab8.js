@@ -16,3 +16,19 @@ const escribirEnArchivo = (str) => {
 
 let str = 'Hola'
 escribirEnArchivo(str);
+
+function twoSum(nums, target) {
+    const numMap = {};
+    for (let i = 0; i < nums.length; i++) {
+        const complement = target - nums[i];
+        if (numMap.hasOwnProperty(complement)) {
+        return [numMap[complement], i];
+        }
+        numMap[nums[i]] = i;
+    }
+}
+
+let nums = [3, 2, 4, 1];
+target = 6;
+
+console.log(twoSum(nums, target));

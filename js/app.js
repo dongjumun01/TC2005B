@@ -30,10 +30,15 @@
 const http = require('http');
 
 const server = http.createServer( (request, response) => {
-    console.log(request.url);
-    response.setHeader('Content-Type', 'text.html');
-    response.write(html);             
-    response.end();
+    if(request.method == "GET") {
+      console.log(request.url);
+      response.setHeader('Content-Type', 'text.html');
+      response.write(html);             
+      response.end();
+    } else if (request.method == "POST") {
+      response.setHeader('Content-Type', 'text.html');
+      response.end();
+    }
 });
 
 //createServer(function, )

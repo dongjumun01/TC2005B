@@ -36,6 +36,9 @@ const server = http.createServer( (request, response) => {
       response.write(html);             
       response.end();
     } else if (request.method == "POST") {
+      request.on('data', (data) => { //voy a escuchar las peticiones.
+        console.log(data); // Llega "nombre=inputValue" en hexadecimal
+      }); 
       response.setHeader('Content-Type', 'text.html');
       response.end();
     }
@@ -71,11 +74,9 @@ const html = `
     <div class="column">
       <form action="/" method="POST">
         <label class="label">Nombre de personaje</label>
-        <input class="input is-primary" type="text" placeholder="Chewbacca"/>
+        <input class="input is-primary" type="text" placeholder="Chewbacca" id="nombre" name="nombre"/>
         <br><br>
-        <button id="boton_imagen" class="button is-primary">
-          Guardar personaje
-        </button>
+        <input type="submit" id="boton_imagen" class="button is-primary" value="Guardar personaje"/>
       </form>
     </div>
     <div class="column">

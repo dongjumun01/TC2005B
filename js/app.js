@@ -55,7 +55,7 @@ const server = http.createServer( (request, response) => {
         datas.push(data);
       }); 
 
-      request.on('end', () => {
+      request.on('end', () => { //cuando no hay mas datos recibidos
         const datos_completos = Buffer.concat(datas).toString();
         console.log(datos_completos);
         personajes.push(datos_completos.split('=')[1]);

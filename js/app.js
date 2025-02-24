@@ -1,31 +1,31 @@
-const file_system = require('fs')
-//fs es file system
-//leer archivos aceder archivos ...
-//The ‘fs’ module of Node.js implements the File I/O operation
+// const file_system = require('fs')
+// //fs es file system
+// //leer archivos aceder archivos ...
+// //The ‘fs’ module of Node.js implements the File I/O operation
 
-file_system.writeFileSync('hola.txt', 'Hola desde node');
-//Manera sincronica
-//para sistemas distribuidos
-//Cuando este occurre va a bloquedar todo hasta que corra ese comando.
+// file_system.writeFileSync('hola.txt', 'Hola desde node');
+// //Manera sincronica
+// //para sistemas distribuidos
+// //Cuando este occurre va a bloquedar todo hasta que corra ese comando.
 
-setTimeout(() => {
-    console.log("jojo te hackeé");
-}, 20000); 
-//Este comando corre al final ya que es una function asincronica
+// setTimeout(() => {
+//     console.log("jojo te hackeé");
+// }, 20000); 
+// //Este comando corre al final ya que es una function asincronica
 
-const arreglo = [5000, 50, 230, 120, 13, 29, 329, 493, 921,1210];
+// const arreglo = [5000, 50, 230, 120, 13, 29, 329, 493, 921,1210];
 
-for (let item of arreglo) {
-    setTimeout(() => {
-        console.log(item);
-    }, item);
-}
+// for (let item of arreglo) {
+//     setTimeout(() => {
+//         console.log(item);
+//     }, item);
+// }
 
-//ex) 5000 => se ejecuta cuando pasen 5000 milisegundos
+// //ex) 5000 => se ejecuta cuando pasen 5000 milisegundos
 
-//setTimeout(function, la cantidad de milisegundos)
+// //setTimeout(function, la cantidad de milisegundos)
 
-//Manera asincronica
+// //Manera asincronica
 
 const http = require('http');
 
@@ -58,18 +58,20 @@ const html = `
   <section class="section"> 
     <div class="container">
       <h1 class="title">
-        Hello World
+        Hello There!
       </h1>
-      <p class="subtitle">
-        My first website with <strong>Bulma</strong>!
-      </p>
     </div>
   </section>
   <div class="columns">
     <div class="column">
-      <button id="boton_imagen" class="button is-primary">
-        Mostrar imagen
-      </button>
+      <form action="/" method="POST">
+        <label class="label">Nombre de personaje</label>
+        <input class="input is-primary" type="text" placeholder="Chewbacca"/>
+        <br><br>
+        <button id="boton_imagen" class="button is-primary">
+          Guardar personaje
+        </button>
+      </form>
     </div>
     <div class="column">
       <span id="imagen_chewy"></span>

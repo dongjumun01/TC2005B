@@ -36,9 +36,18 @@ const server = http.createServer( (request, response) => {
       response.write(html);             
       response.end();
     } else if (request.method == "POST") {
+
+      const datas = [];
+
       request.on('data', (data) => { //voy a escuchar las peticiones.
         console.log(data); // Llega "nombre=inputValue" en hexadecimal
+        datas.push(data);
       }); 
+
+      request.on('end', () => {
+        const datos_completos = Buffer.concat(datas).toString();
+        console.log(datos_completos);
+      });
       response.setHeader('Content-Type', 'text.html');
       response.end();
     }

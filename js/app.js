@@ -41,7 +41,7 @@ let html_card_footer = `
 const http = require('http');
 
 const server = http.createServer( (request, response) => {
-    if(request.method == "GET") {
+    if(request.url == "/" && request.method == "GET") {
       console.log(request.url);
       response.setHeader('Content-Type', 'text.html');
       response.write(html_header + html_content_form + html_footer);             
@@ -73,6 +73,11 @@ const server = http.createServer( (request, response) => {
         response.write(html_footer);
         response.end();
       });
+    } else {  
+      response.statusCode = 404;
+      response.setHeader('Content-Type', 'text.html');
+      response.write(html_header + "La página no existe" + html_footer);
+      response.end();
     }
 });
 

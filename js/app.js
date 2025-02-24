@@ -27,13 +27,24 @@
 
 // //Manera asincronica
 
+let html_card_header = `
+  <div class="card">
+    <div class="card-content">
+      <p class="title">
+  `;
+let html_card_footer = `
+      </p>
+    </div>
+  </div>
+`;
+
 const http = require('http');
 
 const server = http.createServer( (request, response) => {
     if(request.method == "GET") {
       console.log(request.url);
       response.setHeader('Content-Type', 'text.html');
-      response.write(html);             
+      response.write(html_header + html_content_form + html_footer);             
       response.end();
     } else if (request.method == "POST") {
 
@@ -47,9 +58,21 @@ const server = http.createServer( (request, response) => {
       request.on('end', () => {
         const datos_completos = Buffer.concat(datas).toString();
         console.log(datos_completos);
+        personajes.push(datos_completos.split('=')[1]);
+        response.setHeader('Content-Type', 'text.html');
+        response.write(html_header);
+        response.write('<div class="columns">');
+        for(let personaje of personajes) {
+          response.write('<div class="column">');
+          response.write(html_card_header);
+          response.write(personaje);
+          response.write(html_card_footer);
+          response.write('</div>');
+        }
+        response.write('</div>');
+        response.write(html_footer);
+        response.end();
       });
-      response.setHeader('Content-Type', 'text.html');
-      response.end();
     }
 });
 
@@ -61,8 +84,9 @@ server.listen(3000);
 //o 
 //localhost:3000/
 
+const personajes = [];
 
-const html = `
+const html_header = `
 <!DOCTYPE html>
 <html data-theme="dark">
   <head>
@@ -78,7 +102,9 @@ const html = `
         Hello There!
       </h1>
     </div>
-  </section>
+  </section>`;
+
+  const html_content_form = `
   <div class="columns">
     <div class="column">
       <form action="/" method="POST">
@@ -101,8 +127,10 @@ const html = `
       <span id="imagen_3po"></span>
     </div>
     <div class="column">6</div>
-  </div>
+  </div> `;
+
+const html_footer = `
   <script src="./js/introjs2.js"></script>
   </body>
 </html>
-`
+`;

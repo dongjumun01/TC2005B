@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 //Middleware
-app.use((request, response, next) => {
+app.use((request, response, next) => { //con use registramos middleware
     console.log('Middleware!');
     next(); //Le permite a la peticion avanzar hacia el siguiente middleware
 });

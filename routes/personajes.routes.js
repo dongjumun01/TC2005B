@@ -28,7 +28,6 @@ router.post('/agregar', (request, response, next) => {
 const path = require('path');
 
 router.get('/mostrar', (request, response, next) => {
-  //response.sendFile('../views/frameworks.html');
   response.sendFile(path.join(__dirname, '..', 'views', 'frameworks.html'));
 });
 

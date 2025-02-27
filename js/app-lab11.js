@@ -5,11 +5,11 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
 
 
-//Middleware
-app.use((request, response, next) => { //con use registramos middleware
-    console.log('Middleware!');
-    next(); //Le permite a la peticion avanzar hacia el siguiente middleware
-});
+// //Middleware
+// app.use((request, response, next) => { //con use registramos middleware
+//     console.log('Middleware!');
+//     next(); //Le permite a la peticion avanzar hacia el siguiente middleware
+// });
 
 //si muevo esto al final, no va a ejecutar 
 // ya que no tiene next el middleware al final
@@ -21,11 +21,18 @@ const rutasPersonajes = require('../routes/personajes.routes.js');
 
 app.use('/personajes', rutasPersonajes);
 
+const rutasProductos = require('../routes/productos.routes.js');
+app.use('/productos', rutasProductos);
+
+// app.use((request, response, next) => {
+//     console.log('Otro Middleware!');
+//     response.send('Hola mundo!'); //Manda respuesta
+// })
 
 app.use((request, response, next) => {
-    console.log('Otro Middleware!');
-    response.send('Hola mundo!'); //Manda respuesta
-})
+    response.status(404).send('Página no encontrada')
+});
+
 
 app.listen(3000);
 

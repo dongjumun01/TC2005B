@@ -25,6 +25,7 @@ router.post('/agregar', (request, response, next) => {
     response.send(html);
 });
 
+//objeto tipo router de express
 module.exports = router;
 
 const html_header = `

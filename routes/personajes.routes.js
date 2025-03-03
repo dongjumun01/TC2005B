@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const personajes_controller = require('../controllers/personajes.controller');
-const personajes = [];
+
 
 // cuando se registra un middleware con app.get(),
 // el middleware solo se registra para el metodo HTTP GET
@@ -23,20 +23,25 @@ router.get('/add', personajes_controller.get_agregar);
 
 // cuando se registra un middleware con app.post(),
 // el middleware solo se registra para el metodo HTTP POST
-router.post('/agregar', (request, response, next) => {
-    console.log(request.body);
-    personajes.push(request.body.nombre);
-    console.log(personajes);
-    response.render('lista_personaje', {
-      personajes: personajes,
-    });
-});
+// router.post('/agregar', (request, response, next) => {
+//     console.log(request.body);
+//     personajes.push(request.body.nombre);
+//     console.log(personajes);
+//     response.render('lista_personaje', {
+//       personajes: personajes,
+//     });
+// });
 
-const path = require('path'); // para archivos estaticos
+router.post('/agregar', personajes_controller.post_agregar);
 
-router.get('/mostrar', (request, response, next) => {
-  response.sendFile(path.join(__dirname, '..', 'views', 'frameworks.html'));
-});
+
+// const path = require('path'); // para archivos estaticos
+
+// router.get('/mostrar', (request, response, next) => {
+//   response.sendFile(path.join(__dirname, '..', 'views', 'frameworks.html'));
+// });
+
+router.get('/mostrar', personajes_controller.get_mostrar);
 
 //objeto tipo router de express
 // una forma de exportar

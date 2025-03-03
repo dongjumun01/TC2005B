@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const personajes_controller = require('../controllers/personajes.controller');
 
+const personajes_controller = require('../controllers/personajes.controller');
 const personajes = [];
 
 // cuando se registra un middleware con app.get(),
@@ -10,6 +10,10 @@ router.get('/agregar', personajes_controller.get_agregar /*(request, response, n
     //response.send(html_header + html_content_form + html_footer);
     // response.render('agregar_personaje');
 );
+
+//puedo hacer estos con la separación ex) pagina en ingles o español
+router.get('/add', personajes_controller.get_agregar);
+
 // <%- // va a impirmir variable. si hay mas codigo ahi tambien lo va a ejecutar 
 // <%= // es mas seguro. va a impirmir variable
 // ex) <%= personaje; %> ya que es una variable es mejor usar =

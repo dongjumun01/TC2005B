@@ -28,8 +28,8 @@ const rutasPersonajes = require('../routes/personajes.routes.js');
 
 app.use('/personajes', rutasPersonajes);
 
-const rutasProductos = require('../routes/productos.routes.js');
-app.use('/productos', rutasProductos);
+// const rutasProductos = require('../routes/productos.routes.js');
+// app.use('/productos', rutasProductos);
 
 // app.use((request, response, next) => {
 //     console.log('Otro Middleware!');

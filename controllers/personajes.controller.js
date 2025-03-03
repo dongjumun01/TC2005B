@@ -1,4 +1,5 @@
 const personajes = [];
+const Personaje = require('../models/personaje.model');
 
 //para metodo get de ruta agregar. solo la logica. Principio SRP
 exports.get_agregar = (req, res, nxt) => {
@@ -7,10 +8,13 @@ exports.get_agregar = (req, res, nxt) => {
 
 exports.post_agregar = (req, res, nxt) => {
   console.log(req.body);
-  personajes.push(req.body.nombre);
-  console.log(personajes);
+  //personajes.push(req.body.nombre);
+  const personajes = new Personaje(req.body.nombre)
+  //console.log(personajes);
+  personajes.save();
+  console.fetchAll(personajes);
   res.render('lista_personaje', {
-    personajes: personajes,
+    personajes: Personaje.fetchAll(),
   });
 };
 

@@ -27,11 +27,12 @@ router.post('/agregar', (request, response, next) => {
     });
 });
 
-const path = require('path');
+const path = require('path'); // para archivos estaticos
 
 router.get('/mostrar', (request, response, next) => {
   response.sendFile(path.join(__dirname, '..', 'views', 'frameworks.html'));
 });
 
 //objeto tipo router de express
+// una forma de exportar
 module.exports = router;

@@ -1,0 +1,10 @@
+<%- include('includes/_header.ejs') %>
+<% if (producto == 'lacteos') { %>
+        <% include('includes/_lacteos.ejs') %>     
+<% } else if (producto == 'frutas') { %>
+        <% include('includes/frutas.ejs') %>
+<% } else if (producto == 'enlatados') { %>
+        <% include('includes/frutas.ejs') %>  
+<% } else if (producto == 'granos') { %>
+        <% include('includes/frutas.ejs') %>           
+<%- include('includes/_footer.ejs') %>

@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const personajes_controller = require('../controllers/personajes.controller');
 
 const personajes = [];
 
 // cuando se registra un middleware con app.get(),
 // el middleware solo se registra para el metodo HTTP GET
-router.get('/agregar', (request, response, next) => {
+router.get('/agregar', personajes_controller.get_agregar /*(request, response, next) => {}*/
     //response.send(html_header + html_content_form + html_footer);
-    response.render('agregar_personaje');
-});
+    // response.render('agregar_personaje');
+);
 // <%- // va a impirmir variable. si hay mas codigo ahi tambien lo va a ejecutar 
 // <%= // es mas seguro. va a impirmir variable
 // ex) <%= personaje; %> ya que es una variable es mejor usar =

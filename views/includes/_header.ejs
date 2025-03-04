@@ -30,10 +30,11 @@
             <a class="navbar-item">
               Home
             </a>
-      
-            <a class="navbar-item">
-              Documentation
+            <% if (isLoggedIn) { %>
+            <a class="navbar-item is-selected">
+              Personajes
             </a>
+            <% } %>
       
             <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
@@ -43,9 +44,6 @@
               <div class="navbar-dropdown">
                 <a class="navbar-item">
                   About
-                </a>
-                <a class="navbar-item is-selected">
-                  Personajes
                 </a>
                 <a class="navbar-item">
                   Contact
@@ -61,12 +59,19 @@
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
+                <% if (isLoggedIn) { %>
+                  <%= username %>
+                  <a href="/users/logout" class="button is-danger">
+                    Log out
+                  </a>
+                <% } else { %>
                 <a class="button is-primary">
                   <strong>Sign up</strong>
                 </a>
                 <a href="/users/login" class="button is-light">
                   Log in
                 </a>
+                <% } %>
               </div>
             </div>
           </div>

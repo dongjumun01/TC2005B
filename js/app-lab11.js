@@ -20,9 +20,12 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 //si muevo esto al final, no va a ejecutar 
 // ya que no tiene next el middleware al final
-app.use('/main', (request, response, next) => { 
-    response.send("Hola desde una ruta");
-});
+// app.use('/main', (request, response, next) => { 
+//     response.send("Hola desde una ruta");
+// });
+
+const rutasUsuarios = require('../routes/user.routes.js');
+app.use('/users', rutasUsuarios);
 
 const rutasPersonajes = require('../routes/personajes.routes.js');
 
@@ -37,7 +40,7 @@ app.use('/personajes', rutasPersonajes);
 // })
 
 app.use((request, response, next) => {
-    response.status(404).send('Página no encontrada')
+    response.status(404).send('Página no encontrada');
 });
 
 

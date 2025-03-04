@@ -9,6 +9,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+//a request le agrega un objeto que se llama session
 const session = require('express-session');
 app.use(session({
     secret: 'mi string secreto que debe ser un string aleatorio muy largo, no como éste', 

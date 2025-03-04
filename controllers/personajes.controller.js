@@ -2,6 +2,7 @@ const Personaje = require('../models/personaje.model');
 
 //para metodo get de ruta agregar. solo la logica. Principio SRP
 exports.get_agregar = (req, res, nxt) => {
+    console.log(req.session);
     res.render('agregar_personaje');  
 };
 

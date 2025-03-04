@@ -3,5 +3,6 @@ exports.get_login = (req, res, nxt) => {
 };
 
 exports.post_login = (req, res, nxt) => {
+    req.session.username = req.body.username;
     res.redirect('/personajes');
 };

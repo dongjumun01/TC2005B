@@ -43,6 +43,8 @@ router.post('/agregar', personajes_controller.post_agregar);
 
 router.get('/mostrar', personajes_controller.get_mostrar);
 
+router.get('/', personajes_controller.get_lista);
+
 //objeto tipo router de express
 // una forma de exportar
 module.exports = router;

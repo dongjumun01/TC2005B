@@ -12,12 +12,17 @@ exports.get_agregar = (req, res, nxt) => {
 exports.post_agregar = (req, res, nxt) => {
     console.log(req.body);
     const personaje = new Personaje(req.body.nombre);
-    personaje.save();
+    personaje.save()        
+    .then(() => {
+        res.redirect('/personajes');
+    })
+    .catch((error) => {
+        console.log(error);
+    });
 
-    res.setHeader('Set-Cookie', `ultimo_personaje=${personaje.nombre}`);
+    //res.setHeader('Set-Cookie', `ultimo_personaje=${personaje.nombre}`);
 
-    console.log(Personaje.fetchAll());
-    res.redirect('/personajes');
+    //console.log(Personaje.fetchAll());
 };
 
 exports.get_lista = (req, res, nxt) => {

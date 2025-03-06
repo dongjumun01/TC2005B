@@ -14,13 +14,7 @@ module.exports = class Modelo {
         //personajes.push(this);
         //.then(): solo si la promesa cumplio. es como try
         // .catch: solo si la promesa fallo. es como catch
-        db.execute('INSERT INTO personajes(nombre) VALUES(?)', [this.nombre])
-        .then(() => {
-            console.log(`Personaje ${this.nombre} guardado`);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        return db.execute('INSERT INTO personajes(nombre) VALUES(?)', [this.nombre]);
     }
 
     // Este método servirá para devolver los objetos del almacenamiento 

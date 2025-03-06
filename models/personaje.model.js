@@ -1,3 +1,4 @@
+const db = require('../util/database');
 const personajes = [];
 
 module.exports = class Modelo {
@@ -10,7 +11,16 @@ module.exports = class Modelo {
 
     // Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        personajes.push(this);
+        //personajes.push(this);
+        //.then(): solo si la promesa cumplio. es como try
+        // .catch: solo si la promesa fallo. es como catch
+        db.execute('INSERT INTO personajes(nombre) VALUES(?)', [this.nombre])
+        .then(() => {
+            console.log(`Personaje ${this.nombre} guardado`);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
 
     // Este método servirá para devolver los objetos del almacenamiento 

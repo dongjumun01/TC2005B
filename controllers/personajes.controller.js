@@ -10,14 +10,18 @@ exports.get_agregar = (req, res, nxt) => {
 };
 
 exports.post_agregar = (req, res, nxt) => {
-  console.log(req.body);
-  const personaje = new Personaje(req.body.nombre);
-  personaje.save();
-  console.log(Personaje.fetchAll());
-  res.redirect('/personajes');
+    console.log(req.body);
+    const personaje = new Personaje(req.body.nombre);
+    personaje.save();
+
+    res.setHeader('Set-Cookie', `ultimo_personaje=${personaje.nombre}`);
+
+    console.log(Personaje.fetchAll());
+    res.redirect('/personajes');
 };
 
 exports.get_lista = (req, res, nxt) => {
+    console.log(req.get('Cookie').split(';'));
     res.render('lista_personaje', {
         personajes: Personaje.fetchAll(),
         isLoggedIn: req.session.isLoggedIn || false,

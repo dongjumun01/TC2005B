@@ -6,5 +6,11 @@ router.get('/', (request, response, next) => {
     response.render('mostrar_productos');
 });
 
-router.post()
+router.post('/', (req, res, nxt) => {
+    console.log(req.body.nombre);
+    res.render('mostrar_lista_de_productos', {
+      producto: req.body.nombre,
+    });
+});
+
 module.exports = router;

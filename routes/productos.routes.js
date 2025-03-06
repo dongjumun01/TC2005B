@@ -1,16 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const productos_controller = require('../controllers/productos.controller')
 
-router.get('/', (request, response, next) => {
-    //response.send(html_header + html_content_form + html_footer);
-    response.render('mostrar_productos');
-});
+router.get('/', productos_controller.get_mostrar_productos);
 
-router.post('/', (req, res, nxt) => {
-    console.log(req.body.nombre);
-    res.render('mostrar_lista_de_productos', {
-      producto: req.body.nombre,
-    });
-});
+router.post('/', productos_controller.post_productos);
 
 module.exports = router;

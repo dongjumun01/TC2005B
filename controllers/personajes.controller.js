@@ -14,6 +14,7 @@ exports.post_agregar = (req, res, nxt) => {
     const personaje = new Personaje(req.body.nombre);
     personaje.save()        
     .then(() => {
+        req.session.info = `Personaje ${personaje.nombre} guardado`;
         res.redirect('/personajes');
     })
     .catch((error) => {
@@ -27,10 +28,15 @@ exports.post_agregar = (req, res, nxt) => {
 
 exports.get_lista = (req, res, nxt) => {
     console.log(req.get('Cookie').split(';'));
+    const mensaje = req.session.info || '';
+    if (req.session.info) {
+        req.session.info = '';
+    }
     res.render('lista_personaje', {
         personajes: Personaje.fetchAll(),
         isLoggedIn: req.session.isLoggedIn || false,
         username: req.session.username || '',
+        info: mensaje,
     });  
 };
 

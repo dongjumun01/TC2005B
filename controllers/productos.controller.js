@@ -8,3 +8,5 @@ exports.post_productos = (req, res, nxt) => {
       producto: req.body.nombre,
     });
 };
+
+//lab 13

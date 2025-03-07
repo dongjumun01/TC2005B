@@ -20,7 +20,18 @@ module.exports = class Modelo {
     // Este método servirá para devolver los objetos del almacenamiento 
     // persistente.
     static fetchAll() {
-        return personajes;
+        return db.execute('SELECT * FROM personajes');
     }
 
+    static fetchOne(id) {
+        return db.execute('SELECT * FROM personajes WHERE id=?', [id]);
+    }
+
+    static fetch(id) {
+        if (id) {
+            return this.fetchOne(id);
+        } else {
+            return this.fetchAll();
+        }
+    }
 }

@@ -13,13 +13,13 @@ exports.post_agregar = (req, res, nxt) => {
     console.log(req.body);
     const personaje = new Personaje(req.body.nombre);
     personaje.save()        
-    .then(() => {
-        req.session.info = `Personaje ${personaje.nombre} guardado`;
-        res.redirect('/personajes');
-    })
-    .catch((error) => {
-        console.log(error);
-    });
+        .then(() => {
+            req.session.info = `Personaje ${personaje.nombre} guardado`;
+            res.redirect('/personajes');
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 
     //res.setHeader('Set-Cookie', `ultimo_personaje=${personaje.nombre}`);
 
@@ -32,12 +32,20 @@ exports.get_lista = (req, res, nxt) => {
     if (req.session.info) {
         req.session.info = '';
     }
-    res.render('lista_personaje', {
-        personajes: Personaje.fetchAll(),
-        isLoggedIn: req.session.isLoggedIn || false,
-        username: req.session.username || '',
-        info: mensaje,
-    });  
+    Personaje.fetch(req.params.id)
+        .then(([rows,fielData]) => {
+            console.log(fielData);
+            console.log(rows);
+            res.render('lista_personaje', {
+                personajes: rows,
+                isLoggedIn: req.session.isLoggedIn || false,
+                username: req.session.username || '',
+                info: mensaje,
+            });  
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 };
 
 exports.get_mostrar = (req, res, nxt) => {

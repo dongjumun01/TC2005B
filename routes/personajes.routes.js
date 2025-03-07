@@ -13,6 +13,9 @@ router.post('/agregar', personajes_controller.post_agregar);
 
 router.get('/mostrar', personajes_controller.get_mostrar);
 
+//de general a especifico
+router.get('/:id', personajes_controller.get_lista);
+
 router.get('/', personajes_controller.get_lista);
 
 //objeto tipo router de express

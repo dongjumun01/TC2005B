@@ -1,10 +1,11 @@
         <div class="columns">
             <div class="column">
                 <form action="/personajes/agregar" method="POST">
-                <label class="label">Brain storming</label>
-                <input class="input is-primary" type="text" placeholder="Idea" id="idea" name="nombre"/>
-                <br><br>
-                <input type="submit" id="boton_imagen" class="button is-primary" value="Guardar idea"/>
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                    <label class="label">Brain storming</label>
+                    <input class="input is-primary" type="text" placeholder="Idea" id="idea" name="nombre"/>
+                    <br><br>
+                    <input type="submit" id="boton_imagen" class="button is-primary" value="Guardar idea"/>
                 </form>
             </div>
             <div class="column">

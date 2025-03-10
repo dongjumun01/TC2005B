@@ -6,6 +6,7 @@ exports.get_agregar = (req, res, nxt) => {
     res.render('agregar_personaje', {
         isLoggedIn: req.session.isLoggedIn || false,
         username: req.session.username || '',
+        csrfToken: req.csrfToken(),
     });  
 };
 

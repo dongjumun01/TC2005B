@@ -43,4 +43,16 @@ module.exports = class Usuario {
             return this.fetchAll();
         }
     }
+
+    static getPrevilegios(username) {
+        return db.execute(
+            `SELECT p.nombre FROM previlegios p, rol_previlegio rp, roles r, 
+            usuario_rol ur, usuarios u 
+            WHERE p.id = rp.id_previlegio AND 
+            rp.id_rol = r.id AND r.id = ur.id_rol AND 
+            ur.id_usuario = u.id AND u.username = ?`,
+            [username]
+        );
+    }
 }
+

@@ -42,6 +42,7 @@ exports.get_lista = (req, res, nxt) => {
                 isLoggedIn: req.session.isLoggedIn || false,
                 username: req.session.username || '',
                 info: mensaje,
+                previlegios: req.session.previlegios || [],
             });  
         })
         .catch((error) => {

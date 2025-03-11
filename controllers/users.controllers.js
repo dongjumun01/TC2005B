@@ -18,9 +18,19 @@ exports.post_login = (req, res, nxt) => {
                 if (doMatch) {
                     req.session.username = rows[0].username;
                     req.session.isLoggedIn = true;
-                    return req.session.save(err => {
-                        res.redirect('/personajes');
-                    })
+                    console.log(rows[0].username);
+                    Usuario.getPrevilegios(rows[0].username).then(([previlegios, fieldData]) => {
+                        req.session.previlegios = [];
+                        for(let previlegio of previlegios) {
+                            req.session.previlegios.push(previlegio);
+                        }
+                        console.log(req.session.previlegios);
+                        return req.session.save(err => {
+                            res.redirect('/personajes');
+                        });
+                    }).catch((error) => {
+                        console.log(error);
+                    });
                 } else {
                     res.redirect('/users/login');
                 }

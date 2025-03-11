@@ -1,24 +1,18 @@
-        <div class="columns">
-            <div class="column">
-                <form action="/personajes/agregar" method="POST">
-                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
-                    <label class="label">Brain storming</label>
-                    <input class="input is-primary" type="text" placeholder="Idea" id="idea" name="nombre"/>
-                    <br><br>
-                    <input type="submit" id="boton_imagen" class="button is-primary" value="Guardar idea"/>
-                </form>
-            </div>
-            <div class="column">
-                <span id="imagen_chewy"></span>
-            </div>
-            <div class="column">
-                <span id="imagen_grogu"></span>
-            </div>
-            <div class="column">
-                <span id="imagen_r2d2"></span>
-            </div>
-            <div class="column">
-                <span id="imagen_3po"></span>
-            </div>
-            <div class="column">6</div>
-        </div> 
+<div class="columns">
+    <div class="column">
+      <form action="/personajes/agregar" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+        <label for="nombre" class="label">Nombre del personaje</label>
+        <input
+          class="input is-primary"
+          type="text"
+          placeholder="Cheewbaca"
+          id="nombre"
+          name="nombre"
+          required
+        />
+        <br><br>
+        <input type="submit" id="boton_personaje" class="button is-primary" value="Guardar personaje">
+      </form>
+    </div>
+</div>

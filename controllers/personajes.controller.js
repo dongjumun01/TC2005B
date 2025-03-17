@@ -1,56 +1,61 @@
 const Personaje = require('../models/personaje.model');
+const Fuerza = require('../models/fuerza.model');
 
-//para metodo get de ruta agregar. solo la logica. Principio SRP
-exports.get_agregar = (req, res, nxt) => {
-    console.log(req.session);
-    res.render('agregar_personaje', {
-        isLoggedIn: req.session.isLoggedIn || false,
-        username: req.session.username || '',
-        csrfToken: req.csrfToken(),
-    });  
+exports.get_agregar = (request, response, next) => {
+
+    Fuerza.fetchAll().then(([rows, fieldData]) => {
+        response.render('agregar_personaje', {
+            isLoggedIn: request.session.isLoggedIn || false,
+            username: request.session.username || '',
+            csrfToken: request.csrfToken(),
+            niveles: rows,
+        });
+
+    }).catch((error) => {
+        console.log(error);
+    });
+
 };
 
-exports.post_agregar = (req, res, nxt) => {
-    console.log(req.body);
-    const personaje = new Personaje(req.body.nombre);
-    personaje.save()        
+exports.post_agregar = (request, response, next) => {
+    console.log(request.body);
+    const personaje = new 
+        Personaje(request.body.nombre, request.body.niveles);
+        
+    personaje.save()
         .then(() => {
-            req.session.info = `Personaje ${personaje.nombre} guardado`;
-            res.redirect('/personajes');
+            request.session.info = `Personaje ${personaje.nombre} guardado.`;
+            response.redirect('/personajes');
         })
         .catch((error) => {
             console.log(error);
         });
-
-    //res.setHeader('Set-Cookie', `ultimo_personaje=${personaje.nombre}`);
-
-    //console.log(Personaje.fetchAll());
 };
 
-exports.get_lista = (req, res, nxt) => {
-    console.log(req.get('Cookie').split(';'));
-    const mensaje = req.session.info || '';
-    if (req.session.info) {
-        req.session.info = '';
+exports.get_lista = (request, response, next) => { 
+    const mensaje = request.session.info || '';
+    if (request.session.info) {
+        request.session.info = '';
     }
-    Personaje.fetch(req.params.id)
-        .then(([rows,fielData]) => {
+
+    Personaje.fetch(request.params.id)
+        .then(([rows, fielData]) => {
             console.log(fielData);
             console.log(rows);
-            res.render('lista_personaje', {
+            response.render('lista_personajes', {
                 personajes: rows,
-                isLoggedIn: req.session.isLoggedIn || false,
-                username: req.session.username || '',
+                isLoggedIn: request.session.isLoggedIn || false,
+                username: request.session.username || '',
                 info: mensaje,
-                previlegios: req.session.previlegios || [],
-            });  
+                privilegios: request.session.privilegios || [],
+            });
         })
         .catch((error) => {
             console.log(error);
         });
 };
 
-exports.get_mostrar = (req, res, nxt) => {
+exports.get_mostrar = (request, response, next) => {
     const path = require('path');
-    res.sendFile(path.join(__dirname, '..', 'views', 'frameworks.html'));
+    response.sendFile(path.join(__dirname, '..', 'views', 'index.html'));
 };

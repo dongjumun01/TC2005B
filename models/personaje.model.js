@@ -1,30 +1,35 @@
 const db = require('../util/database');
-const personajes = [];
 
-module.exports = class Modelo {
+module.exports = class Personaje {
 
-    // Constructor de la clase. Sirve para crear un nuevo objeto, 
-    // y en él se definen las propiedades del modelo
-    constructor(my_value) {
-        this.nombre = my_value;
+    //Constructor de la clase. Sirve para crear un nuevo objeto, y en él se definen las propiedades del modelo
+    constructor(mi_nombre, mi_nivel) {
+        this.nombre = mi_nombre;
+        this.id_fuerza = mi_nivel;
     }
 
-    // Este método servirá para guardar de manera persistente el nuevo objeto. 
+    //Este método servirá para guardar de manera persistente el nuevo objeto. 
     save() {
-        //personajes.push(this);
-        //.then(): solo si la promesa cumplio. es como try
-        // .catch: solo si la promesa fallo. es como catch
-        return db.execute('INSERT INTO personajes(nombre) VALUES(?)', [this.nombre]);
+        return db.execute(
+            'INSERT INTO personajes(nombre, id_fuerza) VALUES (?, ?)', 
+            [this.nombre, this.id_fuerza]);
     }
 
-    // Este método servirá para devolver los objetos del almacenamiento 
-    // persistente.
+    //Este método servirá para devolver los objetos del almacenamiento persistente.
     static fetchAll() {
-        return db.execute('SELECT * FROM personajes');
+        return db.execute(`
+            SELECT * 
+            FROM personajes p, fuerza f
+            WHERE p.id_fuerza=f.id
+            `);
     }
 
     static fetchOne(id) {
-        return db.execute('SELECT * FROM personajes WHERE id=?', [id]);
+        return db.execute(`
+            SELECT * 
+            FROM personajes p, fuerza f
+            WHERE p.id_fuerza=f.id AND id=?`, 
+            [id]);
     }
 
     static fetch(id) {
@@ -34,4 +39,5 @@ module.exports = class Modelo {
             return this.fetchAll();
         }
     }
+
 }

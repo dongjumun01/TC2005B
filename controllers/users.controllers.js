@@ -1,74 +1,71 @@
 const Usuario = require('../models/usuario.model');
 const bcrypt = require('bcryptjs');
 
-exports.get_login = (req, res, nxt) => {
-    res.render('login.ejs', {
-        isLoggedIn: req.session.isLoggedIn || false,
-        username: req.session.username || '',
-        isNew: false,
-        csrfToken: req.csrfToken(),
+exports.get_signup = (request, response, next) => {
+    response.render('login.ejs', {
+        isLoggedIn: request.session.isLoggedIn || false,
+        username: request.session.username || '',
+        isNew: true,
+        csrfToken: request.csrfToken(),
     });
 };
 
-exports.post_login = (req, res, nxt) => {
-    Usuario.fetchOne(req.body.username).then(([rows, fieldData]) => {
+exports.post_signup = (request, response, next) => {
+    const nuevo_usuario = new 
+        Usuario(request.body.username, request.body.password);
+
+    nuevo_usuario.save().then(() => {
+        response.redirect('/users/login');
+    }).catch((error) => {
+        console.log(error);
+    });
+};
+
+exports.get_login = (request, response, next) => {
+    response.render('login.ejs', {
+        isLoggedIn: request.session.isLoggedIn || false,
+        username: request.session.username || '',
+        isNew: false,
+        csrfToken: request.csrfToken(),
+    });
+};
+
+exports.post_login = (request, response, next) => {
+    Usuario.fetchOne(request.body.username).then(([rows, fieldData]) => {
         if (rows.length > 0) {
-            bcrypt.compare(req.body.password, rows[0].password)
-            .then((doMatch) => {
-                if (doMatch) {
-                    req.session.username = rows[0].username;
-                    req.session.isLoggedIn = true;
-                    console.log(rows[0].username);
-                    Usuario.getPrevilegios(rows[0].username).then(([previlegios, fieldData]) => {
-                        req.session.previlegios = [];
-                        for(let previlegio of previlegios) {
-                            req.session.previlegios.push(previlegio);
-                        }
-                        console.log(req.session.previlegios);
-                        return req.session.save(err => {
-                            res.redirect('/personajes');
+            bcrypt.compare(request.body.password, rows[0].password)
+                .then((doMatch) => {
+                    if (doMatch) {
+                        request.session.username = rows[0].username;
+                        request.session.isLoggedIn = true;
+                        Usuario.getPrevilegios(rows[0].username).then(([previlegios, fieldData]) => {
+                            request.session.previlegios = [];
+                            for(let privilegio of previlegios) {
+                                request.session.previlegios.push(privilegio);
+                            }
+                            return request.session.save(err => {
+                                response.redirect('/personajes');
+                            });
+                        }).catch((error) => {
+                            console.log(error);
                         });
-                    }).catch((error) => {
-                        console.log(error);
-                    });
-                } else {
-                    res.redirect('/users/login');
-                }
+                    } else {
+                        response.redirect('/users/login');
+                    }
             }).catch((error) => {
                 console.log(error);
-            })
+            });
         } else {
-            res.redirect('/users/login');
+            response.redirect('/users/login');
         }
     }).catch((error) => {
         console.log(error);
-    })
+    });
 };
 
-exports.get_logout = (req, res, nxt) => {
-    req.session.destroy(() => {
+exports.get_logout = (request, response, next) => {
+    request.session.destroy(() => {
         //Este código se ejecuta cuando la sesión se elimina.
-        res.redirect('/users/login');
-    });
-};
-
-exports.get_signup = (req, res, nxt) => {
-    res.render('login.ejs', {
-        isLoggedIn: req.session.isLoggedIn || false,
-        username: req.session.username || '',
-        isNew: true,
-        csrfToken: req.csrfToken(),
-    });
-};
-
-exports.post_signup = (req, res, nxt) => {
-    const nuevo_usuario = new 
-        Usuario (req.body.username, req.body.password);
-
-    nuevo_usuario.save().then( () => {
-        res.redirect('/users/login');
-    }
-    ).catch((error) => {
-        console.log(error);
+        response.redirect('/users/login'); 
     });
 };

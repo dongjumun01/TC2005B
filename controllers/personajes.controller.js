@@ -19,8 +19,10 @@ exports.get_agregar = (request, response, next) => {
 
 exports.post_agregar = (request, response, next) => {
     console.log(request.body);
-    const personaje = new 
-        Personaje(request.body.nombre, request.body.niveles);
+    console.log(request.file);
+    const personaje = new Personaje(
+        request.body.nombre, request.body.niveles, request.file.filename
+        );
         
     personaje.save()
         .then(() => {
@@ -47,7 +49,7 @@ exports.get_lista = (request, response, next) => {
                 isLoggedIn: request.session.isLoggedIn || false,
                 username: request.session.username || '',
                 info: mensaje,
-                privilegios: request.session.privilegios || [],
+                privilegios: request.session.previlegios || [],
             });
         })
         .catch((error) => {

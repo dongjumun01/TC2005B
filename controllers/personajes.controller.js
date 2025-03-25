@@ -63,5 +63,10 @@ exports.get_mostrar = (request, response, next) => {
 };
 
 exports.get_buscar = (req, res, nxt) => {
-    res.status(200).json({message: "Respuesta asíncrona"});
+    Personaje.find(req.params.valor)
+    .then(([rows, fieldData]) => {
+        res.status(200).json({personajes: rows});
+    }).catch((error) => {
+        res.status(500).json({message: "asdgas"});
+    });
 };

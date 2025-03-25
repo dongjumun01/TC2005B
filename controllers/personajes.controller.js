@@ -61,3 +61,7 @@ exports.get_mostrar = (request, response, next) => {
     const path = require('path');
     response.sendFile(path.join(__dirname, '..', 'views', 'index.html'));
 };
+
+exports.get_buscar = (req, res, nxt) => {
+    res.status(200).json({message: "Respuesta asíncrona"});
+};

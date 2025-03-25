@@ -6,6 +6,17 @@
     </div>
 <% } %>
 
+<label for="buscar" class="label">Usuario</label>
+<input 
+    id="buscar"
+    name="buscar"
+    class="input is-info"
+    type="text"
+    placeholder="Chewbacca"
+/>
+<br><br>
+
+
 <% for(let privilegio of privilegios) { %> 
     <% if(privilegio.nombre == "crear personajes") { %>
         <a class="button is-primary" href="/personajes/agregar">
@@ -69,5 +80,22 @@
         </a>
     <% } %>
 <% } %>
+
+<script>
+    const btn_buscar = document.getElementById("buscar");
+    btn_buscar.onkeyup = () => {
+        console.log(btn_buscar.value);
+        fetch('/personajes/buscar', {  
+            method: 'GET',
+        }).then((result) => {
+            return result.json();
+        }).then((data) => {
+            console.log(data);
+        }).catch((error) => {
+            // aparece en el navegador
+            console.log(error);
+        });
+    }
+</script>
 
 <%- include('includes/_footer.ejs') %>

@@ -1,0 +1,7 @@
+Liga de commits: 
+
+1. para importar datos del otro sistema
+: https://github.com/Leonille-mx/via-diseno/commit/3e1169e3dfb025c0028da76ef46ca2f092440dd9
+
+2. Usar la funcion para importar los datos del otro sistema
+: https://github.com/Leonille-mx/via-diseno/commit/70984ddd12455218e180ebf22e2308abe2aac356
